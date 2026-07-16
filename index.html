@@ -1100,7 +1100,8 @@
 
   // ---------- Init ----------
   try { muted = localStorage.getItem("ptb_muted") === "1"; muteBtn.textContent = muted ? "🔇" : "🔊"; } catch (e) {}
-  try { musicOff = localStorage.getItem("ptb_music_off") === "1"; } catch (e) {}
+  // Music OFF by default: only ON if the player previously turned it on (stored "0").
+  try { musicOff = localStorage.getItem("ptb_music_off") !== "0"; } catch (e) { musicOff = true; }
   renderMusicBtn();
   grid = newGrid();
   fit();
